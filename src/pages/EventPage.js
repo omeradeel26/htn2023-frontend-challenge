@@ -3,7 +3,7 @@ import { DataContext } from "../providers/DataProvider";
 
 import Event from "../components/Event";
 
-export default function Events() {
+export default function EventPage() {
   const { events, user } = useContext(DataContext);
 
   const renderedEvents = events.map((event, index) => {
@@ -15,5 +15,10 @@ export default function Events() {
     }
   });
 
-  return <div>{renderedEvents}</div>;
+  return (
+    <div>
+      <h1>Events</h1>
+      {renderedEvents}
+    </div>
+  );
 }

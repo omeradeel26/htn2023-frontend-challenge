@@ -1,12 +1,12 @@
 import { DataProvider } from "./providers/DataProvider";
 import { AuthProvider } from "./providers/AuthProvider";
-import ScreenManager from "../src/components/ScreenManager";
+import AppManager from "./AppManager";
 
 function App() {
   return (
     <AuthProvider>
       <DataProvider>
-        <ScreenManager />
+        <AppManager />
       </DataProvider>
     </AuthProvider>
   );
