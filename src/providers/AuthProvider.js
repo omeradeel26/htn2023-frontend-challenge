@@ -3,26 +3,25 @@ import React, { useEffect, useState, createContext } from "react";
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
 
   const signIn = (user, password) => {
     if (user === "hackthenorth" && password === "2023!") {
+      setUser(true);
       return true;
+    } else {
+      alert("Username or password is incorrect! Try again.");
+      return false;
     }
-
-    return false;
   };
 
   const signOut = () => {
-    setUser(null);
+    console.log("signed out");
+    setUser(false);
   };
 
   const isSignedIn = () => {
-    if (user != null) {
-      return false;
-    }
-
-    return true;
+    return user;
   };
 
   return (

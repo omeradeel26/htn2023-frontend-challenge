@@ -3,8 +3,10 @@ import { useContext } from "react";
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
+//import { Button, ButtonGroup } from "@chakra-ui/react";
+
 export default function NavHeader() {
-  const { SCREENS, screen, setScreen } = useContext(DataContext);
+  const { screen, setScreen } = useContext(DataContext);
   const { signIn, signOut, isSignedIn } = useContext(AuthContext);
 
   const NavButton = ({ title }) => {
@@ -33,12 +35,9 @@ export default function NavHeader() {
 
   const SignOutButton = () => {
     return (
-      <button
-        style={{ marginLeft: 20 }}
-        onClick={() => {
-          signOut();
-        }}
-      />
+      <button onClick={signOut()}>
+        Sign Out
+      </button>
     );
   };
 
@@ -76,7 +75,7 @@ export default function NavHeader() {
       >
         <NavButton title={"Home"} />
         <NavButton title={"Events"} />
-        {isSignedIn ? <SignInButton /> : <SignOutButton />}
+        {isSignedIn() ? <SignOutButton /> : <SignInButton />}
       </div>
     </div>
   );

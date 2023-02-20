@@ -12,8 +12,29 @@ export const DataProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
 
   const { user } = useContext(AuthContext);
+  
 
-  const searchEvents = () => {};
+  const searchEvents = (searchVal) => {
+    let tempEvents = [...events];
+    for (let i = 0; i < tempEvents.length; i++) {
+      if (searchVal.length != 0) {
+        let search = false;
+        if (searchVal.length <= tempEvents[i].name.length) {
+          if (
+            tempEvents[i].name.substring(0, searchVal.length).toLowerCase() ==
+            searchVal.toLowerCase()
+          ) {
+            search = true;
+          }
+        }
+
+        tempEvents[i].searched = search;
+      } else {
+        tempEvents[i].searched = true;
+      }
+    }
+    setEvents(tempEvents);
+  };
 
   const filterEvents = () => {};
 
@@ -21,6 +42,11 @@ export const DataProvider = ({ children }) => {
     // axios.get("https://api.hackthenorth.com/v3/events").then((response) => {
     //   setEvents(response.data);
     // });
+
+    for (let i = 0; i < data.length; i++) {
+      data[i].searched = true;
+      data[i].filtered = true;
+    }
 
     setEvents(data);
   }, []);
