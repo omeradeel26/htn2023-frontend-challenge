@@ -12,14 +12,12 @@ function App() {
     <Router>
       <AuthProvider>
         <DataProvider>
-          <div style={{ width: "100%", height: "100%" }}>
-            <NavHeader />
-            <Routes>
-              <Route path="/" element={<HomePage/>} />
-              <Route path="/events" element={<EventPage/>} />
-              <Route path="/signin" element={<SignInPage/>} />
-            </Routes>
-          </div>
+          <NavHeader />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events" element={<EventPage />} />
+            <Route path="/signin" element={<SignInPage />} />
+          </Routes>
         </DataProvider>
       </AuthProvider>
     </Router>

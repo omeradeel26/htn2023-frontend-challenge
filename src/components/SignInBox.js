@@ -13,19 +13,20 @@ export default function SignInBox() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div style={{}}>
       <input
         onChange={(e) => setUser(e.target.value)}
         placeholder="Enter Username..."
       />
       <input
         onChange={(e) => setPassword(e.target.value)}
+        type="password"
         placeholder="Enter Password..."
       />
       <button
         onClick={() => {
           if (signIn(user, password)) {
-            navigate("/home");
+            navigate("/");
           }
         }}
       >

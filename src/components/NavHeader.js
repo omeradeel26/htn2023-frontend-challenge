@@ -1,45 +1,16 @@
 import { useContext } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
-//import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
 export default function NavHeader() {
-  const { screen, setScreen } = useContext(DataContext);
-  const { signIn, signOut, isSignedIn } = useContext(AuthContext);
+  const { signOut, isSignedIn } = useContext(AuthContext);
 
-  const NavButton = ({ title }) => {
-    return (
-      <button
-        style={{ fontWeight: screen == title ? 500 : 100, marginLeft: 20 }}
-        onClick={setScreen(title)}
-      >
-        {title}
-      </button>
-    );
-  };
-
-  const SignInButton = () => {
-    return (
-      <button
-        style={{ marginLeft: 20 }}
-        onClick={() => {
-          setScreen("SIGNIN");
-        }}
-      >
-        Sign In
-      </button>
-    );
-  };
-
-  const SignOutButton = () => {
-    return (
-      <button onClick={signOut()}>
-        Sign Out
-      </button>
-    );
-  };
+  const navigate = useNavigate();
 
   return (
     <div
@@ -63,7 +34,7 @@ export default function NavHeader() {
         <h1>Hack The North 2023</h1>
       </div>
 
-      <div
+      <ul
         style={{
           width: "80%",
           height: "100%",
@@ -71,12 +42,32 @@ export default function NavHeader() {
           justifyContent: "flex-end",
           alignItems: "center",
           border: "1px solid black",
+          listStyleType: "none",
         }}
       >
-        <NavButton title={"Home"} />
-        <NavButton title={"Events"} />
-        {isSignedIn() ? <SignOutButton /> : <SignInButton />}
-      </div>
+        <li>
+          <Button onClick={() => navigate("/")}>Home</Button>
+        </li>
+        <li>
+          <Button onClick={() => navigate("/events")}>Events</Button>
+        </li>
+        {isSignedIn() ? (
+          <li>
+            <Button onClick={() => signOut()}>Sign Out</Button>
+          </li>
+        ) : (
+          <li>
+            <Button
+              style={{ marginLeft: 20 }}
+              onClick={() => {
+                navigate("/signin");
+              }}
+            >
+              Sign In
+            </Button>
+          </li>
+        )}
+      </ul>
     </div>
   );
 }

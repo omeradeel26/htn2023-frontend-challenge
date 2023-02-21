@@ -8,11 +8,7 @@ import { AuthContext } from "./AuthProvider";
 export const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-  const [screen, setScreen] = useState("Events");
   const [events, setEvents] = useState([]);
-
-  const { user } = useContext(AuthContext);
-  
 
   const searchEvents = (searchVal) => {
     let tempEvents = [...events];
@@ -53,7 +49,7 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ screen, setScreen, events, filterEvents, searchEvents }}
+      value={{events, filterEvents, searchEvents }}
     >
       {children}
     </DataContext.Provider>
