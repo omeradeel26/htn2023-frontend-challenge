@@ -5,9 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 
-import { Flex, Spacer, Button, Box, Text, ButtonGroup, Image} from "@chakra-ui/react";
+import {
+  Flex,
+  Spacer,
+  Button,
+  Box,
+  Text,
+  ButtonGroup,
+  Image,
+} from "@chakra-ui/react";
 
 export default function NavHeader() {
   const { signOut, isSignedIn } = useContext(AuthContext);
@@ -18,9 +26,9 @@ export default function NavHeader() {
     <Flex bg="brand.300" alignItems="center" padding="20px" h="10vh">
       <Flex alignItems="center" gap="4" marginLeft="10vw">
         <Image src={logo} />
-        <Text fontWeight="extrabold"> Hackathon Global</Text>
+        <Text fontWeight="extrabold"> Hackathon Global Inc.</Text>
       </Flex>
-      <Spacer/>
+      <Spacer />
       <ButtonGroup marginRight="10vw">
         <Button variant="nav" onClick={() => navigate("/")}>
           <Text>Home</Text>
@@ -30,9 +38,7 @@ export default function NavHeader() {
         </Button>
         {isSignedIn() ? (
           <Button onClick={() => signOut()} variant="authButton">
-            <Text>
-              Sign Out
-            </Text>
+            <Text>Sign Out</Text>
           </Button>
         ) : (
           <Button

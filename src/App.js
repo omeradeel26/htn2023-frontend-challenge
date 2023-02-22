@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./theme/index"
+import { ChakraProvider as ThemeProvider } from "@chakra-ui/react";
+import theme from "./theme/index";
 
-import '@fontsource/raleway/400.css'
-import '@fontsource/open-sans/700.css'
+import "@fontsource/raleway/400.css";
+import "@fontsource/open-sans/700.css";
 
 import { DataProvider } from "./providers/DataProvider";
 import { AuthProvider } from "./providers/AuthProvider";
@@ -15,7 +15,7 @@ import SignInPage from "./pages/SignInPage";
 function App() {
   return (
     <Router>
-      <ChakraProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <AuthProvider>
           <DataProvider>
             <NavHeader />
@@ -26,7 +26,7 @@ function App() {
             </Routes>
           </DataProvider>
         </AuthProvider>
-      </ChakraProvider>
+      </ThemeProvider>
     </Router>
   );
 }

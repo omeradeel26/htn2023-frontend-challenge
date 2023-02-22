@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
-import { Text, Flex } from "@chakra-ui/react";
+import { Text, Flex, Spacer } from "@chakra-ui/react";
 
-import Event from "../components/Event";
+import EventBox from "../components/EventBox";
 import EventManager from "../components/EventManager";
 
 export default function EventPage() {
@@ -22,15 +22,19 @@ export default function EventPage() {
       event.filtered &&
       event.searched
     ) {
-      return <Event key={index} event={event} />;
+      return <EventBox key={index} event={event} />;
     }
   });
 
   return (
-    <Flex direction="column" bg="brand.900" border="3px solid black" h="100vh">
-      <Text>Events</Text>
-      <EventManager />
-      {renderedEvents}
+    <Flex bg="brand.900" minHeight="90vh">
+      <Spacer />
+      <Flex direction="column" w="76vw">
+        <Text variant="header">Events</Text>
+        <EventManager />
+        {renderedEvents}
+      </Flex>
+      <Spacer />
     </Flex>
   );
 }

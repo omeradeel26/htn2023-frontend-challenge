@@ -1,31 +1,50 @@
-import { Flex, Image, Center, Text, Spacer, Button } from "@chakra-ui/react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../providers/AuthProvider";
+
+import { Flex, Image, Center, Text, Spacer, Button } from "@chakra-ui/react";
 
 import earth from "../assets/earth.gif";
 
 export default function HomePage() {
   const navigate = useNavigate();
 
+  const { isSignedIn } = useContext(AuthContext);
+
   return (
     <Flex bg="brand.900" h="90vh">
-      <Spacer/>
+      <Spacer />
       <Flex w="50vw" direction="column" padding="20px">
-        <Spacer/>
+        <Spacer />
         <Text variant="title">
-          Hackathon Global is HERE! At the <Text variant="title" as="u">world's largest hackathon,</Text>
+          Hackathon Global is HERE! At the{" "}
+          <Text variant="title" as="u">
+            world's largest hackathon,
+          </Text>
         </Text>
-        <Spacer/>
+        <Spacer />
         <Flex gap="5" align="center">
-            <Button variant="calltoaction" onClick={() => {navigate('/events')}}><Text>View Events</Text></Button>
-            <Text as="u">Sign In Here.</Text>
+          <Button
+            variant="calltoaction"
+            onClick={() => {
+              navigate("/events");
+            }}
+          >
+            <Text>View Events</Text>
+          </Button>
+          {!isSignedIn() && (
+            <Text as="u" onClick={() => navigate("/signin")}>
+              Sign In.
+            </Text>
+          )}
         </Flex>
-        <Spacer/>
+        <Spacer />
       </Flex>
       <Center w="30vw">
         <Image src={earth} w={400} h={350} />
       </Center>
-      <Spacer/>
+      <Spacer />
     </Flex>
   );
 }

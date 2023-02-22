@@ -13,6 +13,17 @@ const Text = {
       fontSize: "5xl",
       fontWeight: 800
     },
+    header: {
+        fontSize: "4xl",
+        fontWeight: 800
+    },
+    eventTitle: {
+        fontSize: "3xl",
+        color: "#000"
+    }, 
+    eventDescr: {
+        color: "#000"
+    }
   },
   // default values for 'size', 'variant' and 'colorScheme'
   defaultProps: {},
