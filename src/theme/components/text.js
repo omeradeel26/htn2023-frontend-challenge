@@ -23,6 +23,10 @@ const Text = {
     }, 
     eventDescr: {
         color: "#000"
+    },
+    date: {
+        color: "black",
+        fontSize: 'md'
     }
   },
   // default values for 'size', 'variant' and 'colorScheme'

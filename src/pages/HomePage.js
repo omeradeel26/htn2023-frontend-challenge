@@ -18,10 +18,13 @@ export default function HomePage() {
       <Flex w="50vw" direction="column" padding="20px">
         <Spacer />
         <Text variant="title">
-          Hackathon Global is HERE! At the{" "}
+          Hackathon Global is HERE! <br />
+          At the{" "}
           <Text variant="title" as="u">
             world's largest hackathon,
           </Text>
+          <br />
+          you will
         </Text>
         <Spacer />
         <Flex gap="5" align="center">
