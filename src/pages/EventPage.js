@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
+import { Text, Flex } from "@chakra-ui/react";
+
 import Event from "../components/Event";
 import EventManager from "../components/EventManager";
 
@@ -25,10 +27,10 @@ export default function EventPage() {
   });
 
   return (
-    <div>
-      <h1>Events</h1>
+    <Flex direction="column" bg="brand.900" border="3px solid black" h="100vh">
+      <Text>Events</Text>
       <EventManager />
       {renderedEvents}
-    </div>
+    </Flex>
   );
 }

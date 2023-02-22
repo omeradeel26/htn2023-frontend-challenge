@@ -1,4 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./theme/index"
+
+import '@fontsource/raleway/400.css'
+import '@fontsource/open-sans/700.css'
 
 import { DataProvider } from "./providers/DataProvider";
 import { AuthProvider } from "./providers/AuthProvider";
@@ -10,16 +15,18 @@ import SignInPage from "./pages/SignInPage";
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <DataProvider>
-          <NavHeader />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/events" element={<EventPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-          </Routes>
-        </DataProvider>
-      </AuthProvider>
+      <ChakraProvider theme={theme}>
+        <AuthProvider>
+          <DataProvider>
+            <NavHeader />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/events" element={<EventPage />} />
+              <Route path="/signin" element={<SignInPage />} />
+            </Routes>
+          </DataProvider>
+        </AuthProvider>
+      </ChakraProvider>
     </Router>
   );
 }
