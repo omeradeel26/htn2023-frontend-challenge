@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../providers/DataProvider";
 import { AuthContext } from "../providers/AuthProvider";
 
@@ -10,7 +10,7 @@ import EventBox from "../components/EventBox";
 import EventManager from "../components/EventManager";
 
 export default function EventsPage() {
-  const { events } = useContext(DataContext);
+  const { events, resetSearchFilter} = useContext(DataContext);
   const { isSignedIn } = useContext(AuthContext);
 
   let renderedEvents = events.map((event, index) => {
@@ -23,6 +23,10 @@ export default function EventsPage() {
       return <EventBox key={index} event={event} />;
     }
   });
+
+  useEffect(()=>{
+    resetSearchFilter();
+  }, [])
 
   return (
     <Flex bg="brand.900" minHeight="90vh">

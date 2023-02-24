@@ -25,8 +25,23 @@ const Text = {
         color: "#000"
     },
     date: {
-        color: "black",
-        fontSize: 'md'
+      color: "black",
+      fontSize: 'md'
+    },
+    eventSubPage: {
+      color: "black",
+      fontSize: 'md'
+    },
+    eventSubPageHeader: {
+      fontSize: '3xl',
+      color: 'black',
+      
+    },
+
+    eventSubPageDate: {
+      fontSize: 'lg',
+      color: 'black',
+      
     }
   },
   // default values for 'size', 'variant' and 'colorScheme'

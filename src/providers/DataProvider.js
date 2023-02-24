@@ -49,7 +49,7 @@ export const DataProvider = ({ children }) => {
       }
     }
 
-    if (filter.sort == "desc") {
+    if (filter.sort === "desc") {
       tempEvents.sort(function compare(a, b) {
         return parseFloat(b.start_time) - parseFloat(a.start_time);
       });
@@ -62,20 +62,25 @@ export const DataProvider = ({ children }) => {
     setEvents(tempEvents);
   };
 
-  const getRequest = async (url) => {
-    try {
-      const { data: response } = await axios.get(url);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getEvent = async (eventId) => {
-    const event = await getRequest(
+    const res = await axios.get(
       `https://api.hackthenorth.com/v3/events/${eventId}`
     );
-    return event;
+    return res.data;
+  };
+
+  const resetSearchFilter = () => {
+    let tempEvents = [...events];
+    for (let i = 0; i < tempEvents.length; i++) {
+      tempEvents[i].searched = true;
+      tempEvents[i].filtered = true;
+    }
+
+    tempEvents.sort(function compare(a, b) {
+      return parseFloat(b.start_time) - parseFloat(a.start_time);
+    });
+
+    setEvents(tempEvents);
   };
 
   useEffect(() => {
@@ -97,7 +102,14 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ events, filterEvents, searchEvents, FILTERS, getEvent }}
+      value={{
+        events,
+        filterEvents,
+        searchEvents,
+        FILTERS,
+        getEvent,
+        resetSearchFilter,
+      }}
     >
       {children}
     </DataContext.Provider>

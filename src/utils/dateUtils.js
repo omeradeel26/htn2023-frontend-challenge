@@ -5,3 +5,10 @@ export const formatDate = (start_time, end_time) => {
 
   return date + ", " + s_time + " - " + e_time;
 };
+
+
+export const getMinutes = (start_time, end_time) => {
+  const millis = end_time - start_time;
+  var minutes = Math.floor(millis / 60000);
+  return minutes
+}

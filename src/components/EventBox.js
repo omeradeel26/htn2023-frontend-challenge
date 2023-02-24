@@ -2,111 +2,12 @@ import { Flex, Text, Spacer, Box, Button } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 
-import {
-  FaClock,
-  FaTools,
-  FaChessKnight,
-  FaLaptopCode,
-  FaGlobe,
-  FaLock,
-} from "react-icons/fa";
-
 import { formatDate } from "../utils/dateUtils";
+
+import {TimeLabel, PublicLabel, PrivateLabel, TechLabel, WorkshopLabel, ActivityLabel} from "./Labels"
 
 export default function EventBox({ event }) {
   const navigate = useNavigate();
-
-  const TimeLabel = () => {
-    const millis = event.end_time - event.start_time;
-    var minutes = Math.floor(millis / 60000);
-    return (
-      <Flex
-        gap="2"
-        bg={"gray.200"}
-        borderRadius={8}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaClock color={"grey"} /> {minutes} mins
-      </Flex>
-    );
-  };
-
-  const PublicLabel = () => {
-    return (
-      <Flex
-        gap="2"
-        bg={"#f9df80"}
-        borderRadius={10}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaGlobe color={"#eee"} /> Public
-      </Flex>
-    );
-  };
-
-  const PrivateLabel = () => {
-    return (
-      <Flex
-        gap="2"
-        bg={"#a900d5"}
-        borderRadius={10}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaLock color={"#eee"} /> Private
-      </Flex>
-    );
-  };
-
-  const TechLabel = () => {
-    return (
-      <Flex
-        gap="2"
-        bg={"blue.300"}
-        borderRadius={10}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaLaptopCode color={"#eee"} /> Tech Talk
-      </Flex>
-    );
-  };
-
-  const WorkshopLabel = () => {
-    return (
-      <Flex
-        gap="2"
-        bg={"red.400"}
-        borderRadius={10}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaTools color={"#eee"} /> Workshop
-      </Flex>
-    );
-  };
-
-  const ActivityLabel = () => {
-    return (
-      <Flex
-        gap="2"
-        bg={"green.400"}
-        borderRadius={10}
-        padding="8px"
-        alignItems="center"
-        fontSize={"sm"}
-      >
-        <FaChessKnight color={"#eee"} /> Activity
-      </Flex>
-    );
-  };
 
   return (
     <Flex
@@ -130,7 +31,7 @@ export default function EventBox({ event }) {
       </Text>
       <Flex>
         <Flex gap="3">
-          <TimeLabel />
+          <TimeLabel event={event}/>
           {event.permission == "public" && <PublicLabel />}
           {event.permission == "private" && <PrivateLabel />}
           {event.event_type == "workshop" && <WorkshopLabel />}
